@@ -14,6 +14,11 @@ class MUser extends Model
         $this->builder = $this->db->table($this->table);
     }
 
+    public function tambah($data)
+    {
+        return $this->builder->insert($data);
+    }
+
     public function auth($username)
     {
         return $this->builder
