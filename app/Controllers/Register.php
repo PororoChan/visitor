@@ -20,13 +20,13 @@ class Register extends BaseController
 
     public function addUser()
     {
-        $usern = $this->request->getPost('uname');
+        $uname = $this->request->getPost('uname');
         $password = $this->request->getPost('password');
         $data = array();
 
-        if ($usern != "" && $password != "") {
+        if ($uname != "" && $password != "") {
             $data = [
-                'username' => $usern,
+                'username' => $uname,
                 'password' => password_hash($password, PASSWORD_DEFAULT),
                 'created_at' => date('Y-m-d H:i:s'),
             ];
