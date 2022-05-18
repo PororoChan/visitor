@@ -40,9 +40,18 @@ $routes->add('register/add', 'Register::addUser');
 // Login
 $routes->add('login', 'Login::index');
 $routes->add('auth', 'Login::auth');
+$routes->add('login/logout', 'Login::logout');
+
+// Datatables
+$routes->add('table', 'master\Visitor::datatable');
 
 // Dashboard
-$routes->add('home', 'master\Coba::index');
+$routes->add('home', 'master\Visitor::index');
+
+// CRUD
+$routes->add('visitor/form', 'master\Visitor::forms');
+$routes->add('visitor/add', 'master\Visitor::tambahDt');
+$routes->add('visitor/delete', 'master\Visitor::vDelete');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

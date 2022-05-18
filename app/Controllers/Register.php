@@ -20,12 +20,23 @@ class Register extends BaseController
 
     public function addUser()
     {
-        $uname = $this->request->getPost('uname');
+        $name = $this->request->getPost('name');
+        $uname = $this->request->getPost('username');
         $password = $this->request->getPost('password');
+        $confirm = $this->request->getPost('confirm');
         $data = array();
 
-        if ($uname != "" && $password != "") {
+        $rules = [
+            'password' => 'required|min_length[6]|max_length[255]',
+            'confirm' => 'required|min_length[6]|max_length[255]|matches[password]',
+        ];
+
+        if (!$this->validate($rules)) {
+            $data['success'] = '0';
+        } else {
+
             $data = [
+                'name' => $name,
                 'username' => $uname,
                 'password' => password_hash($password, PASSWORD_DEFAULT),
                 'created_at' => date('Y-m-d H:i:s'),
@@ -34,9 +45,8 @@ class Register extends BaseController
             $this->model->tambah($data);
 
             $data['success'] = '1';
-        } else {
-            $data['success'] = '0';
         }
+
         echo json_encode($data);
     }
 }

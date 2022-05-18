@@ -62,12 +62,12 @@
                     </form>
                 </div>
             </div>
-            <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="<?= base_url('public/assets/img/unsplash/login-bg.jpg') ?>">
+            <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="<?= base_url('public/assets/img/unsplash/bg.jpg') ?>">
                 <div class="absolute-bottom-left index-2">
                     <div class="text-light p-5 pb-2">
-                        <div class="mb-5 pb-3">
-                            <h1 class="mb-2 display-4 font-weight-bold">Good Morning</h1>
-                            <h5 class="font-weight-normal text-muted-transparent">Bali, Indonesia</h5>
+                        <div class="pb-3">
+                            <h1 class="display-4 font-weight-bold">Good Morning</h1>
+                            <h5 class="font-weight-normal text-muted-transparent">Banten, Indonesia</h5>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
 </div>
 
 <!-- General JS Scripts -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -86,6 +86,7 @@
 <script src="<?= base_url('public/assets/js/custom.js') ?>"></script>
 <script>
     $(document).ready(function() {
+        // Butuh CSRF Token?
         $('#btn-login').on('click', function() {
             var uname = $('#uname').val();
             var pass = $('#password').val();

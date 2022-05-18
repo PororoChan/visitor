@@ -20,16 +20,18 @@ class Login extends BaseController
 
     public function auth()
     {
+        $session = session();
         $uname = $this->request->getPost("username");
         $pass = $this->request->getPost("password");
 
         $data = array();
 
-        $sendData = $this->model->auth($uname);
-        if ($sendData) {
-            if (password_verify($pass, rtrim($sendData['password']))) {
-                session()->set('userid', $sendData['userid']);
-                session()->set('nama', $sendData['username']);
+        $dt = $this->model->auth($uname);
+        if ($dt) {
+            if (password_verify($pass, rtrim($dt['password']))) {
+                $session->set('userid', $dt['userid']);
+                $session->set('nama', $dt['name']);
+
                 $data['success'] = 1;
             } else {
                 $data['success'] = 0;
@@ -39,5 +41,12 @@ class Login extends BaseController
         }
 
         echo json_encode($data);
+    }
+
+    public function logout()
+    {
+        session()->destroy();
+
+        return redirect()->to('login');
     }
 }

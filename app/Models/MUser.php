@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class MUser extends Model
 {
-    protected $table = 'dt_user as d';
+    protected $table = 'msuser as u';
 
     public function __construct()
     {
@@ -22,7 +22,7 @@ class MUser extends Model
     public function auth($username)
     {
         return $this->builder
-            ->where('d.username', $username)
+            ->where('u.username', $username)
             ->get()->getRowArray();
     }
 }
