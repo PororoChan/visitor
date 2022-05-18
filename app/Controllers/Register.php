@@ -20,7 +20,6 @@ class Register extends BaseController
 
     public function addUser()
     {
-        $nama = $this->request->getPost('nama');
         $uname = $this->request->getPost('uname');
         $password = $this->request->getPost('password');
         $data = array();
