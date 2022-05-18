@@ -1,11 +1,11 @@
 <form id="form-crud">
     <div class="form-group">
         <div class="row">
-            <div class="col-4">
+            <div class="col-3">
                 <label for="name">Nama <span class="text-danger">*</span></label>
                 <input class="form-control" type="text" id="name" name="name">
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <label for="village">Desa <span class="text-danger">*</span></label>
                 <input class="form-control" type="text" id="village" name="village">
             </div>
@@ -21,21 +21,21 @@
                 <label for="tgl_in">Tgl. Kedatangan <span class="text-danger">*</span></label>
                 <input class="form-control" name="tgl_in" id="tgl_in" type="date">
             </div>
+            <div class="col-2">
+                <br>
+                <button type='submit' name="btn-crud" id="btn-crud" class='mt-2 w-75 btn btn-primary'>Save</button>
+            </div>
         </div>
         <div class="row mt-2">
-            <div class="col-4">
+            <div class="col-3">
                 <label for="amount">Nominal <span class="text-danger">*</span></label>
                 <input class="form-control" type="number" id="amount" name="amount">
             </div>
-            <div class="col-6">
+            <div class="col-5">
                 <label for="address">Alamat <span class="text-danger">*</span></label>
                 <textarea class="form-control" style="height: 150px;" name="address" id="address"></textarea>
             </div>
         </div>
-    </div>
-    <div class='modal-footer'>
-        <button type='button' class='btn btn-secondary' data-bs-dismiss="modal">Batal</button>
-        <button type='submit' class='btn btn-primary'>Simpan</button>
     </div>
 </form>
 
@@ -53,13 +53,11 @@
         $('#form-crud').on('submit', function(ev) {
             ev.preventDefault();
 
-            var type = "<?= $form_type ?>";
             var link = "<?= base_url('visitor/add') ?>";
             var dt = $(this).serialize();
             var pros = 'tambah';
-            if (type == 'edit') {
-                link = "<?= base_url('visitor/edit') ?>";
-                pros = 'edit'
+            if ($('#btn-crud').html() == 'Update') {
+                link = "<?= base_url('visitor/update') ?>";
             }
 
             $.ajax({
@@ -71,17 +69,18 @@
                     if (res.success == 1) {
                         $.notify('Data berhasil di' + pros, 'success');
                         setTimeout(() => {
-                            $('#crud-modal').modal('toggle');
+                            // $('#crud-modal').modal('toggle');
                             table.ajax.reload();
+                            $('#form-crud')[0].reset();
                         }, 150);
                     } else {
                         $.notify('Proses data Gagal!', 'error');
                         setTimeout(() => {
-                            $('#crud-modal').modal('toggle');
+                            // $('#crud-modal').modal('toggle');
                         }, 150);
                     }
                 }
             })
-        })
+        });
     })
 </script>

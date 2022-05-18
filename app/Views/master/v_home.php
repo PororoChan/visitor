@@ -8,46 +8,7 @@
                 <h5>Data Visitor</h5>
             </div>
             <div class="card-body">
-                <form id="form-crud">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-3">
-                                <label for="name">Nama <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" id="name" name="name">
-                            </div>
-                            <div class="col-3">
-                                <label for="village">Desa <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" id="village" name="village">
-                            </div>
-                            <div class="col-1">
-                                <label for="rt">RT <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" id="rt" name="rt">
-                            </div>
-                            <div class="col-1">
-                                <label for="rw">RW <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" id="rw" name="rw">
-                            </div>
-                            <div class="col-2">
-                                <label for="tgl_in">Tgl. Kedatangan <span class="text-danger">*</span></label>
-                                <input class="form-control" name="tgl_in" id="tgl_in" type="date">
-                            </div>
-                            <div class="col-2">
-                                <br>
-                                <button type='submit' name="btn-crud" id="btn-crud" class='mt-2 w-75 btn btn-primary'>Save</button>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-3">
-                                <label for="amount">Nominal <span class="text-danger">*</span></label>
-                                <input class="form-control" type="number" id="amount" name="amount">
-                            </div>
-                            <div class="col-5">
-                                <label for="address">Alamat <span class="text-danger">*</span></label>
-                                <textarea class="form-control" style="height: 150px;" name="address" id="address"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                <?= $this->include('master/v_form') ?>
                 <hr>
                 <div class="row">
                     <div class="col">

@@ -49,7 +49,6 @@
 
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -61,14 +60,6 @@
 <script src="<?= base_url('public/assets/js/custom.js'); ?>"></script>
 <script src="<?= base_url('public/assets/js/notify.js'); ?>"></script>
 <script>
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0');
-    var yyyy = today.getFullYear();
-
-    today = yyyy + '-' + mm + '-' + dd;
-    $('#tgl_in').attr('min', today);
-
     function modalTambah(title, size, link, dt = '') {
         $.ajax({
             url: link,
@@ -101,39 +92,6 @@
         $('#modaldelete').on('hidden.bs.modal', function() {
             $('#delete-id').html("");
         })
-
-        $('#form-crud').on('submit', function(ev) {
-            ev.preventDefault();
-
-            var link = "<?= base_url('visitor/add') ?>";
-            var dt = $(this).serialize();
-            var pros = 'tambah';
-            if ($('#btn-crud').html() == 'Update') {
-                link = "<?= base_url('visitor/update') ?>";
-            }
-
-            $.ajax({
-                type: 'post',
-                url: link,
-                data: dt,
-                dataType: 'json',
-                success: function(res) {
-                    if (res.success == 1) {
-                        $.notify('Data berhasil di' + pros, 'success');
-                        setTimeout(() => {
-                            // $('#crud-modal').modal('toggle');
-                            table.ajax.reload();
-                            $('#form-crud')[0].reset();
-                        }, 150);
-                    } else {
-                        $.notify('Proses data Gagal!', 'error');
-                        setTimeout(() => {
-                            // $('#crud-modal').modal('toggle');
-                        }, 150);
-                    }
-                }
-            })
-        });
 
         $('#btn-delete').on('click', function() {
             var id = $('#id-delete').val();
