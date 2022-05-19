@@ -38,7 +38,7 @@ class Visitor extends BaseController
             return [
                 $no,
                 $db->visitorname,
-                $db->address . ", RT." . $db->rt . ", RW." . $db->rw . ", Desa " . $db->village,
+                $db->address . ", Desa " . $db->village . ", RT." . $db->rt . ", RW." . $db->rw,
                 "Rp. " . number_format($db->amount, 0, '.', ','),
                 date("d F Y", strtotime($db->visitdate)),
                 "<button type='button' class='btn btn-warning btn-sm' onclick=\"editData('Update', '" . $db->visitorid . "', '" . base_url('visitor/edit') . "')\"><i class='fas fa-pen'></i></button> " .
@@ -180,7 +180,7 @@ class Visitor extends BaseController
         $rt = $this->request->getPost('rt');
         $rw = $this->request->getPost('rw');
         $date = $this->request->getPost('tgl_in');
-        $nomin = str_replace(',', '', $this->request->getPost('amount'));
+        $nomin = $this->request->getPost('amount');
         $addres = $this->request->getPost('address');
 
         // $validation = \Config\Services::validation();
