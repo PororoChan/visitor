@@ -20,7 +20,12 @@ class Visitor extends BaseController
             return redirect()->to('login');
         }
 
-        return view('master/v_home');
+        $data = $this->model->total();
+        $send = [
+            'total' => number_format($data, 0, ',', '.'),
+        ];
+
+        return view('master/v_home', $send);
     }
 
     public function datatable()
@@ -33,9 +38,9 @@ class Visitor extends BaseController
             return [
                 $no,
                 $db->visitorname,
-                $db->address,
-                $db->amount,
-                $db->visitdate,
+                $db->address . ", RT." . $db->rt . ", RW." . $db->rw . ", Desa " . $db->village,
+                "Rp. " . number_format($db->amount, 0, ',', '.'),
+                date("d F Y", strtotime($db->visitdate)),
                 "<button type='button' class='btn btn-warning btn-sm' onclick=\"editData('Update', '" . $db->visitorid . "', '" . base_url('visitor/edit') . "')\"><i class='fas fa-pen'></i></button> " .
                     "<button type='button' class='btn btn-danger btn-sm' onclick=\"modalDelete('Delete Data', '" . $db->visitorid . "', '" . base_url('visitor/delete') . "')\"><i class='fas fa-trash'></i></button>",
             ];
@@ -74,11 +79,10 @@ class Visitor extends BaseController
 
         $validate = $this->validate([
             'name' => [
-                'rules' => 'required|min_length[6]',
+                'rules' => 'required',
                 'label' => 'Nama',
                 'errors' => [
                     'required' => '{field} tidak boleh kosong',
-                    'min_length' => '{field} minimal 6 karakter'
                 ]
             ],
             'village' => [
@@ -183,11 +187,10 @@ class Visitor extends BaseController
 
         $validate = $this->validate([
             'name' => [
-                'rules' => 'required|min_length[6]',
+                'rules' => 'required',
                 'label' => 'Nama',
                 'errors' => [
                     'required' => '{field} tidak boleh kosong',
-                    'min_length' => '{field} minimal 6 karakter'
                 ]
             ],
             'village' => [

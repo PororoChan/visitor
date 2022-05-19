@@ -30,7 +30,7 @@
         <div class="row mt-2">
             <div class="col-3">
                 <label for="amount">Nominal <span class="text-danger">*</span></label>
-                <input class="form-control" type="number" id="amount" name="amount">
+                <input class="form-control money" type="text" id="amount" name="amount">
             </div>
             <div class="col-5">
                 <label for="address">Alamat <span class="text-danger">*</span></label>
@@ -46,6 +46,7 @@
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
+
 
     today = yyyy + '-' + mm + '-' + dd;
     $('#tgl_in').attr('min', today);
@@ -103,7 +104,6 @@
                     } else {
                         $.notify('Proses data Gagal!', 'error');
                     }
-
                 },
             })
         });

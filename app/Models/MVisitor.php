@@ -31,7 +31,7 @@ class MVisitor extends Model
 
     public function getData($param, $text)
     {
-        return $this->builder->select('visitorid, visitorname, address, amount, visitdate')->orderBy('visitorname', 'ASC');
+        return $this->builder->select('visitorid, visitorname, address, village, rt, rw, amount, visitdate')->orderBy('visitorname', 'ASC');
     }
 
     public function getOne($id = '')
@@ -42,6 +42,11 @@ class MVisitor extends Model
         }
 
         return $d;
+    }
+
+    public function total()
+    {
+        return $this->builder->selectSum('amount', 'amn')->get()->getRow()->amn;
     }
 
     public function tambah($data)
