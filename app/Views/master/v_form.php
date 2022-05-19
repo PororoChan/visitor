@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col-3">
                 <label for="name">Nama <span class="text-danger">*</span></label>
+                <input type="hidden" name="id-visit" id="id-visit">
                 <input class="form-control" type="text" id="name" name="name">
             </div>
             <div class="col-3">
@@ -49,6 +50,29 @@
     today = yyyy + '-' + mm + '-' + dd;
     $('#tgl_in').attr('min', today);
 
+    function editData(btn, id, link) {
+        $('#btn-crud').html(btn);
+
+        $.ajax({
+            url: link,
+            type: 'post',
+            data: {
+                visid: id,
+            },
+            dataType: 'json',
+            success: function(res) {
+                $('#id-visit').val(res.id)
+                $('#name').val(res.name)
+                $('#village').val(res.desa)
+                $('#rt').val(res.rt)
+                $('#rw').val(res.rw)
+                $('#amount').val(res.nomin)
+                $('#address').val(res.address)
+                $('#tgl_in').val(res.tgl)
+            }
+        });
+    }
+
     $(document).ready(function() {
         $('#form-crud').on('submit', function(ev) {
             ev.preventDefault();
@@ -58,6 +82,7 @@
             var pros = 'tambah';
             if ($('#btn-crud').html() == 'Update') {
                 link = "<?= base_url('visitor/update') ?>";
+                pros = 'update';
             }
 
             $.ajax({
@@ -68,18 +93,18 @@
                 success: function(res) {
                     if (res.success == 1) {
                         $.notify('Data berhasil di' + pros, 'success');
+                        if ($('#btn-crud').html() != 'Save') {
+                            $('#btn-crud').html("Save");
+                        }
                         setTimeout(() => {
-                            // $('#crud-modal').modal('toggle');
                             table.ajax.reload();
                             $('#form-crud')[0].reset();
                         }, 150);
                     } else {
                         $.notify('Proses data Gagal!', 'error');
-                        setTimeout(() => {
-                            // $('#crud-modal').modal('toggle');
-                        }, 150);
                     }
-                }
+
+                },
             })
         });
     })

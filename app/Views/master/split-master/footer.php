@@ -91,7 +91,7 @@
 
         $('#modaldelete').on('hidden.bs.modal', function() {
             $('#delete-id').html("");
-        })
+        });
 
         $('#btn-delete').on('click', function() {
             var id = $('#id-delete').val();
