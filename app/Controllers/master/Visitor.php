@@ -180,7 +180,7 @@ class Visitor extends BaseController
         $rt = $this->request->getPost('rt');
         $rw = $this->request->getPost('rw');
         $date = $this->request->getPost('tgl_in');
-        $nomin = $this->request->getPost('amount');
+        $nomin = str_replace(',', '', $this->request->getPost('amount'));
         $addres = $this->request->getPost('address');
 
         // $validation = \Config\Services::validation();
