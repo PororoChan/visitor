@@ -30,7 +30,7 @@
         <div class="row mt-2">
             <div class="col-3">
                 <label for="amount">Nominal <span class="text-danger">*</span></label>
-                <input class="form-control money" type="text" id="amount" name="amount">
+                <input class="form-control currency" type="text" id="amount" name="amount">
             </div>
             <div class="col-5">
                 <label for="address">Alamat <span class="text-danger">*</span></label>
@@ -47,6 +47,10 @@
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
 
+    var cleaveC = new Cleave('.currency', {
+        numeral: true,
+        numeralThousandsGroupStyle: 'thousand'
+    });
 
     today = yyyy + '-' + mm + '-' + dd;
     $('#tgl_in').attr('min', today);

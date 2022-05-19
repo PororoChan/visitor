@@ -22,7 +22,7 @@ class Visitor extends BaseController
 
         $data = $this->model->total();
         $send = [
-            'total' => number_format($data, 0, ',', '.'),
+            'total' => number_format($data, 0, '.', ','),
         ];
 
         return view('master/v_home', $send);
@@ -39,7 +39,7 @@ class Visitor extends BaseController
                 $no,
                 $db->visitorname,
                 $db->address . ", RT." . $db->rt . ", RW." . $db->rw . ", Desa " . $db->village,
-                "Rp. " . number_format($db->amount, 0, ',', '.'),
+                "Rp. " . number_format($db->amount, 0, '.', ','),
                 date("d F Y", strtotime($db->visitdate)),
                 "<button type='button' class='btn btn-warning btn-sm' onclick=\"editData('Update', '" . $db->visitorid . "', '" . base_url('visitor/edit') . "')\"><i class='fas fa-pen'></i></button> " .
                     "<button type='button' class='btn btn-danger btn-sm' onclick=\"modalDelete('Delete Data', '" . $db->visitorid . "', '" . base_url('visitor/delete') . "')\"><i class='fas fa-trash'></i></button>",
@@ -72,7 +72,7 @@ class Visitor extends BaseController
         $rt = $this->request->getPost('rt');
         $rw = $this->request->getPost('rw');
         $date = $this->request->getPost('tgl_in');
-        $nomin = $this->request->getPost('amount');
+        $nomin = str_replace(',', '', $this->request->getPost('amount'));
         $addres = $this->request->getPost('address');
 
         // $validation = \Config\Services::validation();
@@ -165,7 +165,7 @@ class Visitor extends BaseController
             'rt' => $data['rt'],
             'rw' => $data['rw'],
             'tgl' => $data['visitdate'],
-            'nomin' => $data['amount'],
+            'nomin' => number_format($data['amount'], 0, '.', ','),
             'address' => $data['address'],
         ];
 

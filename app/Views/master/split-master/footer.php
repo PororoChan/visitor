@@ -84,6 +84,7 @@
     }
 
     $(document).ready(function() {
+
         $('#crud-modal').on("hidden.bs.modal", function() {
             $('.modal-crud').html("");
             $('#modal-size').removeClass('modal-lg', 'modal-sm', 'modal-xl');

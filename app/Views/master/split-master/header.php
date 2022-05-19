@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<?= base_url('public/assets/css/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('public/assets/css/components.css') ?>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
 </head>
 
 <body>
