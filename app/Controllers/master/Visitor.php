@@ -271,9 +271,10 @@ class Visitor extends BaseController
 
         $result = $this->model->hapus($visitid);
         if ($result) {
-            echo '1';
+            $data['success'] = '1';
         } else {
-            echo '0';
+            $data['success'] = '0';
         }
+        echo json_encode($data);
     }
 }

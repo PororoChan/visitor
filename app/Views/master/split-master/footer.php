@@ -60,6 +60,16 @@
 <script src="<?= base_url('public/assets/js/custom.js'); ?>"></script>
 <script src="<?= base_url('public/assets/js/notify.js'); ?>"></script>
 <script>
+    // DataTable
+    var table = $("#tbl_visit").DataTable({
+        serverSide: true,
+        destroy: true,
+        ajax: {
+            type: 'post',
+            url: '<?= base_url('table') ?>',
+        }
+    });
+
     function modalTambah(title, size, link, dt = '') {
         $.ajax({
             url: link,
@@ -107,7 +117,7 @@
                 type: 'post',
                 data: dt,
                 success: function(res) {
-                    if (res == 1) {
+                    if (res.success == 1) {
                         $.notify('Data berhasil dihapus', 'success');
                         setTimeout(() => {
                             table.ajax.reload();
@@ -119,19 +129,11 @@
                             $('#modaldelete').modal('toggle');
                         }, 200);
                     }
+                    $('#total').val(res.total);
                 }
             })
-        })
-    });
 
-    // DataTable
-    var table = $("#tbl_visit").DataTable({
-        serverSide: true,
-        destroy: true,
-        ajax: {
-            type: 'post',
-            url: '<?= base_url('table') ?>',
-        }
+        });
     });
 </script>
 </body>
