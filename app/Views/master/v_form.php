@@ -101,14 +101,23 @@
                         if ($('#btn-crud').html() != 'Save') {
                             $('#btn-crud').html("Save");
                         }
+                        $('#total').val("Menghitung...")
                         setTimeout(() => {
+                            setTimeout(() => {
+                                $.ajax({
+                                    url: "<?= base_url('nomin') ?>",
+                                    success: function(res) {
+                                        $('#total').val(res);
+                                    }
+                                });
+                            }, 500);
                             table.ajax.reload();
                             $('#form-crud')[0].reset();
-                        }, 150);
+                        }, 200);
                     } else {
                         $.notify('Proses data Gagal!', 'error');
                     }
-                },
+                }
             })
         });
     })

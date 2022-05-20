@@ -18,7 +18,7 @@
                         </button> -->
                         <div class="form-inline float-right mb-2">
                             <label for="total">Total: &nbsp;</label>
-                            <input type="text" id="total" name="total" class="form-control" value="Rp. <?= $total ?>" disabled>
+                            <input type="text" id="total" name="total" class="form-control" value="<?= $total ?>" disabled>
                         </div>
                         <table class="table table-striped table-hover table-bordered table-head-fixed" id="tbl_visit" width="100%">
                             <thead>

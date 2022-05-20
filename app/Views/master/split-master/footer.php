@@ -116,10 +116,19 @@
                 url: '<?= base_url('visitor/delete') ?>',
                 type: 'post',
                 data: dt,
-                success: function(res) {
-                    if (res.success == 1) {
-                        $.notify('Data berhasil dihapus', 'success');
+                success: function(resp) {
+                    if (resp == 1) {
+                        $('#total').val("Menghitung...")
                         setTimeout(() => {
+                            setTimeout(() => {
+                                $.ajax({
+                                    url: "<?= base_url('nomin') ?>",
+                                    success: function(res) {
+                                        $('#total').val(res);
+                                    }
+                                });
+                            }, 500);
+                            $.notify('Data berhasil dihapus', 'success');
                             table.ajax.reload();
                             $('#modaldelete').modal('toggle');
                         }, 200);
@@ -128,11 +137,9 @@
                         setTimeout(() => {
                             $('#modaldelete').modal('toggle');
                         }, 200);
-                    }
-                    $('#total').val(res.total);
+                    };
                 }
-            })
-
+            });
         });
     });
 </script>

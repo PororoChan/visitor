@@ -22,7 +22,7 @@ class Visitor extends BaseController
 
         $data = $this->model->total();
         $send = [
-            'total' => number_format($data, 0, '.', ','),
+            'total' => 'Rp. ' . number_format($data, 0, '.', ','),
         ];
 
         return view('master/v_home', $send);
@@ -39,7 +39,7 @@ class Visitor extends BaseController
                 $no,
                 $db->visitorname,
                 $db->address . ", Desa " . $db->village . ", RT." . $db->rt . ", RW." . $db->rw,
-                "Rp. " . number_format($db->amount, 0, '.', ','),
+                'Rp. ' . number_format($db->amount, 0, '.', ','),
                 date("d F Y", strtotime($db->visitdate)),
                 "<button type='button' class='btn btn-warning btn-sm' onclick=\"editData('Update', '" . $db->visitorid . "', '" . base_url('visitor/edit') . "')\"><i class='fas fa-pen'></i></button> " .
                     "<button type='button' class='btn btn-danger btn-sm' onclick=\"modalDelete('Delete Data', '" . $db->visitorid . "', '" . base_url('visitor/delete') . "')\"><i class='fas fa-trash'></i></button>",
@@ -271,10 +271,18 @@ class Visitor extends BaseController
 
         $result = $this->model->hapus($visitid);
         if ($result) {
-            $data['success'] = '1';
+            $data = '1';
         } else {
-            $data['success'] = '0';
+            $data = '0';
         }
-        echo json_encode($data);
+        echo $data;
+    }
+
+    public function nomin()
+    {
+        $q = $this->model->total();
+        $data = 'Rp. ' . number_format($q, 0, '.', ',');
+
+        echo $data;
     }
 }

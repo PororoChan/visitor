@@ -49,6 +49,7 @@ $routes->add('table', 'master\Visitor::datatable');
 $routes->add('home', 'master\Visitor::index');
 
 // CRUD
+$routes->add('nomin', 'master\Visitor::nomin');
 $routes->add('visitor/form', 'master\Visitor::forms');
 $routes->add('visitor/add', 'master\Visitor::tambahDt');
 $routes->add('visitor/edit', 'master\Visitor::editDt');
