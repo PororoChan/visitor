@@ -127,7 +127,7 @@
                                         $('#total').val(res);
                                     }
                                 });
-                            }, 500);
+                            }, 300);
                             $.notify('Data berhasil dihapus', 'success');
                             table.ajax.reload();
                             $('#modaldelete').modal('toggle');

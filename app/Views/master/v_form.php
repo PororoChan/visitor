@@ -110,7 +110,7 @@
                                         $('#total').val(res);
                                     }
                                 });
-                            }, 500);
+                            }, 300);
                             table.ajax.reload();
                             $('#form-crud')[0].reset();
                         }, 200);
