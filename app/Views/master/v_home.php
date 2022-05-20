@@ -25,7 +25,7 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">Alamat</th>
+                                    <th scope="col" style="width: 395px;">Alamat</th>
                                     <th scope="col">Nominal</th>
                                     <th scope="col">Tgl. Datang</th>
                                     <th scope="col">Action</th>
