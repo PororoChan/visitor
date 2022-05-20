@@ -185,7 +185,7 @@ class Visitor extends BaseController
 
         // $validation = \Config\Services::validation();
 
-        $validate = $this->validate([
+        $valid = $this->validate([
             'name' => [
                 'rules' => 'required',
                 'label' => 'Nama',
@@ -227,7 +227,7 @@ class Visitor extends BaseController
                 'rules' => 'required',
                 'label' => 'Nominal',
                 'errors' => [
-                    'required' => '{field} tidak boleh nol'
+                    'required' => '{field} tidak boleh kosong'
                 ]
             ],
             'address' => [
@@ -240,7 +240,7 @@ class Visitor extends BaseController
             ],
         ]);
 
-        if (!$validate) {
+        if (!$valid) {
             $msg['success'] = '0';
         } else {
             $data = [
