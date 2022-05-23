@@ -97,7 +97,7 @@
                             $('#msg').addClass('alert alert-success m-4 mb-auto');
                             setTimeout(() => {
                                 window.location.href = "<?= base_url('login') ?>";
-                            }, 1500);
+                            }, 500);
                         } else {
                             $('#msg').addClass('alert alert-danger m-4 mb-auto');
                             msg = "Data yang dimasukkan salah";

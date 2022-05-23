@@ -74,6 +74,9 @@
                 $('#amount').val(res.nomin)
                 $('#address').val(res.address)
                 $('#tgl_in').val(res.tgl)
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 200);
             }
         });
     }
@@ -118,7 +121,7 @@
                         $.notify('Proses data Gagal!', 'error');
                     }
                 }
-            })
+            });
         });
-    })
+    });
 </script>

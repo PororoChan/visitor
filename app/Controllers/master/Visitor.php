@@ -181,7 +181,7 @@ class Visitor extends BaseController
         $rw = $this->request->getPost('rw');
         $date = $this->request->getPost('tgl_in');
         $nomin = str_replace(',', '', $this->request->getPost('amount'));
-        $addres = $this->request->getPost('address');
+        $address = $this->request->getPost('address');
 
         // $validation = \Config\Services::validation();
 
@@ -245,7 +245,7 @@ class Visitor extends BaseController
         } else {
             $data = [
                 'visitorname' => $vname,
-                'address' => $addres,
+                'address' => $address,
                 'village' => $vill,
                 'rt' => $rt,
                 'rw' => $rw,

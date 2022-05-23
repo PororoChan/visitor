@@ -70,21 +70,21 @@
         }
     });
 
-    function modalTambah(title, size, link, dt = '') {
-        $.ajax({
-            url: link,
-            type: 'post',
-            data: dt,
-            dataType: 'json',
-            success: function(res) {
-                $('#modal-size').removeClass('modal-lg', 'modal-sm', 'modal-xl');
-                $('#modal-size').addClass(size);
-                $('#bodycrud').html(res.view);
-                $('#crud-modal').modal('show');
-                $('#modal_title').text(title);
-            }
-        })
-    }
+    // function modalTambah(title, size, link, dt = '') {
+    //     $.ajax({
+    //         url: link,
+    //         type: 'post',
+    //         data: dt,
+    //         dataType: 'json',
+    //         success: function(res) {
+    //             $('#modal-size').removeClass('modal-lg', 'modal-sm', 'modal-xl');
+    //             $('#modal-size').addClass(size);
+    //             $('#bodycrud').html(res.view);
+    //             $('#crud-modal').modal('show');
+    //             $('#modal_title').text(title);
+    //         }
+    //     })
+    // }
 
     function modalDelete(title, id, link) {
         $('#modaldelete').modal('show');
@@ -95,7 +95,7 @@
 
     $(document).ready(function() {
 
-        $('#crud-modal').on("hidden.bs.modal", function() {
+        $('#crud-modal').on('hidden.bs.modal', function() {
             $('.modal-crud').html("");
             $('#modal-size').removeClass('modal-lg', 'modal-sm', 'modal-xl');
         });
