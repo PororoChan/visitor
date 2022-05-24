@@ -65,15 +65,16 @@ class Visitor extends BaseController
     //     echo json_encode($res);
     // }
 
-    public function tambahDt()
+    public function proses()
     {
+        $id = $this->request->getPost('id-visit');
         $vname = $this->request->getPost('name');
         $vill = $this->request->getPost('village');
         $rt = $this->request->getPost('rt');
         $rw = $this->request->getPost('rw');
         $date = $this->request->getPost('tgl_in');
         $nomin = str_replace(',', '', $this->request->getPost('amount'));
-        $addres = $this->request->getPost('address');
+        $address = $this->request->getPost('address');
 
         // $validation = \Config\Services::validation();
 
@@ -135,21 +136,44 @@ class Visitor extends BaseController
         if (!$validate) {
             $msg['success'] = '0';
         } else {
-            $data = [
-                'visitorname' => $vname,
-                'address' => $addres,
-                'village' => $vill,
-                'rt' => $rt,
-                'rw' => $rw,
-                'amount' => $nomin,
-                'visitdate' => $date,
-                'createddate' => date('Y-m-d H:i:s'),
-            ];
+            if ($id != '') {
+                $data = [
+                    'visitorname' => $vname,
+                    'address' => $address,
+                    'village' => $vill,
+                    'rt' => $rt,
+                    'rw' => $rw,
+                    'amount' => $nomin,
+                    'visitdate' => $date,
+                ];
 
-            $this->model->tambah($data);
+                $q = $this->model->editDt($data, $id);
 
-            $msg['success'] = '1';
+                if ($q) {
+                    $msg['success'] = '1';
+                } else {
+                    $msg['success'] = '0';
+                }
+            } else if ($id == '') {
+                $data = [
+                    'visitorname' => $vname,
+                    'address' => $address,
+                    'village' => $vill,
+                    'rt' => $rt,
+                    'rw' => $rw,
+                    'amount' => $nomin,
+                    'visitdate' => $date,
+                    'createddate' => date('Y-m-d H:i:s'),
+                ];
+
+                $this->model->tambah($data);
+
+                $msg['success'] = '1';
+            } else {
+                $msg['success'] = '0';
+            }
         }
+
         echo json_encode($msg);
     }
 
@@ -171,99 +195,6 @@ class Visitor extends BaseController
 
         echo json_encode($res);
     }
-
-    public function updateDt()
-    {
-        $id = $this->request->getPost('id-visit');
-        $vname = $this->request->getPost('name');
-        $vill = $this->request->getPost('village');
-        $rt = $this->request->getPost('rt');
-        $rw = $this->request->getPost('rw');
-        $date = $this->request->getPost('tgl_in');
-        $nomin = str_replace(',', '', $this->request->getPost('amount'));
-        $address = $this->request->getPost('address');
-
-        // $validation = \Config\Services::validation();
-
-        $valid = $this->validate([
-            'name' => [
-                'rules' => 'required',
-                'label' => 'Nama',
-                'errors' => [
-                    'required' => '{field} tidak boleh kosong',
-                ]
-            ],
-            'village' => [
-                'rules' => 'required',
-                'label' => 'Desa',
-                'errors' => [
-                    'required' => '{field} tidak boleh kosong',
-                ]
-            ],
-            'rt' => [
-                'rules' => 'required|min_length[2]',
-                'label' => 'Rt',
-                'errors' => [
-                    'required' => '{field} tidak boleh kosong',
-                    'min_length' => '{field} harus dua digit angka',
-                ]
-            ],
-            'rw' => [
-                'rules' => 'required|min_length[2]',
-                'label' => 'Rw',
-                'errors' => [
-                    'required' => '{field} tidak boleh kosong',
-                    'min_length' => '{field} harus dua digit angka',
-                ]
-            ],
-            'tgl_in' => [
-                'rules' => 'required',
-                'label' => 'Tanggal',
-                'errors' => [
-                    'required' => '{field} tidak boleh kosong',
-                ]
-            ],
-            'amount' => [
-                'rules' => 'required',
-                'label' => 'Nominal',
-                'errors' => [
-                    'required' => '{field} tidak boleh kosong'
-                ]
-            ],
-            'address' => [
-                'rules' => 'required|max_length[120]',
-                'label' => 'Alamat',
-                'errors' => [
-                    'required' => '{field} tidak boleh kosong',
-                    'max_length' => '{field} melebihi karakter',
-                ]
-            ],
-        ]);
-
-        if (!$valid) {
-            $msg['success'] = '0';
-        } else {
-            $data = [
-                'visitorname' => $vname,
-                'address' => $address,
-                'village' => $vill,
-                'rt' => $rt,
-                'rw' => $rw,
-                'amount' => $nomin,
-                'visitdate' => $date,
-            ];
-
-            $q = $this->model->editDt($data, $id);
-
-            if ($q) {
-                $msg['success'] = '1';
-            } else {
-                $msg['success'] = '0';
-            }
-        }
-        echo json_encode($msg);
-    }
-
 
     public function vDelete()
     {

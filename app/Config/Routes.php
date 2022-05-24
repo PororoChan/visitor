@@ -51,9 +51,9 @@ $routes->add('home', 'master\Visitor::index');
 // CRUD
 $routes->add('nomin', 'master\Visitor::nomin');
 $routes->add('visitor/form', 'master\Visitor::forms');
-$routes->add('visitor/add', 'master\Visitor::tambahDt');
+$routes->add('visitor/add', 'master\Visitor::proses');
 $routes->add('visitor/edit', 'master\Visitor::editDt');
-$routes->add('visitor/update', 'master\Visitor::updateDt');
+$routes->add('visitor/update', 'master\Visitor::proses');
 $routes->add('visitor/delete', 'master\Visitor::vDelete');
 /*
  * --------------------------------------------------------------------
