@@ -87,10 +87,10 @@
 
             var link = "<?= base_url('visitor/add') ?>";
             var dt = $(this).serialize();
-            var pros = 'tambah';
+            var pros = 'Tambah';
             if ($('#btn-crud').html() == 'Update') {
                 link = "<?= base_url('visitor/update') ?>";
-                pros = 'update';
+                pros = 'Update';
             }
 
             $.ajax({
@@ -100,7 +100,7 @@
                 dataType: 'json',
                 success: function(res) {
                     if (res.success == 1) {
-                        $.notify('Data berhasil di' + pros, 'success');
+                        $.notify('Data berhasil di ' + pros, 'success');
                         if ($('#btn-crud').html() != 'Save') {
                             $('#btn-crud').html("Save");
                         }

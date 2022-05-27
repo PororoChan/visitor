@@ -23,7 +23,8 @@ class Register extends BaseController
         $name = $this->request->getPost('name');
         $uname = $this->request->getPost('username');
         $password = $this->request->getPost('password');
-        $confirm = $this->request->getPost('confirm');
+        // $confirm = $this->request->getPost('confirm');
+
         $data = array();
 
         $rules = [
@@ -32,7 +33,7 @@ class Register extends BaseController
         ];
 
         if (!$this->validate($rules)) {
-            $data['success'] = '0';
+            $data['success'] = 0;
         } else {
 
             $data = [
@@ -44,7 +45,7 @@ class Register extends BaseController
 
             $this->model->tambah($data);
 
-            $data['success'] = '1';
+            $data['success'] = 1;
         }
 
         echo json_encode($data);

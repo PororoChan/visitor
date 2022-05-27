@@ -17,7 +17,7 @@
                             Tambah Data
                         </button> -->
                         <div class="form-inline float-right mb-2">
-                            <label for="total">Total: &nbsp;</label>
+                            <label for="total"><b>Total:</b> &nbsp;</label>
                             <input type="text" id="total" name="total" class="form-control" value="<?= $total ?>" disabled>
                         </div>
                         <table class="table table-striped table-hover table-bordered table-head-fixed" id="tbl_visit" width="100%">

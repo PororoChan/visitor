@@ -44,6 +44,11 @@ class MVisitor extends Model
         return $d;
     }
 
+    public function total()
+    {
+        return $this->builder->selectSum('amount', 'amn')->get()->getRow()->amn;
+    }
+
     public function tambah($data)
     {
         return $this->builder->insert($data);
@@ -52,5 +57,10 @@ class MVisitor extends Model
     public function editDt($data, $id)
     {
         return $this->builder->update($data, ['visitorid' => $id]);
+    }
+
+    public function hapus($id)
+    {
+        return $this->builder->delete(['visitorid' => $id]);
     }
 }

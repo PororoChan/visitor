@@ -70,21 +70,21 @@
         }
     });
 
-    // function modalTambah(title, size, link, dt = '') {
-    //     $.ajax({
-    //         url: link,
-    //         type: 'post',
-    //         data: dt,
-    //         dataType: 'json',
-    //         success: function(res) {
-    //             $('#modal-size').removeClass('modal-lg', 'modal-sm', 'modal-xl');
-    //             $('#modal-size').addClass(size);
-    //             $('#bodycrud').html(res.view);
-    //             $('#crud-modal').modal('show');
-    //             $('#modal_title').text(title);
-    //         }
-    //     })
-    // }
+    function modalTambah(title, size, link, dt = '') {
+        $.ajax({
+            url: link,
+            type: 'post',
+            data: dt,
+            dataType: 'json',
+            success: function(res) {
+                $('#modal-size').removeClass('modal-lg', 'modal-sm', 'modal-xl');
+                $('#modal-size').addClass(size);
+                $('#bodycrud').html(res.view);
+                $('#crud-modal').modal('show');
+                $('#modal_title').text(title);
+            }
+        })
+    }
 
     function modalDelete(title, id, link) {
         $('#modaldelete').modal('show');
@@ -106,7 +106,6 @@
 
         $('#btn-delete').on('click', function() {
             var id = $('#id-delete').val();
-            var link = $('#id-link').val();
 
             var dt = {
                 id: id,
@@ -133,10 +132,10 @@
                             $('#modaldelete').modal('toggle');
                         }, 200);
                     } else {
-                        $.notify('Gagal hapus data!', 'error');
+                        $.notify('Data Gagal Dihapus!', 'error');
                         setTimeout(() => {
                             $('#modaldelete').modal('toggle');
-                        }, 200);
+                        }, 300);
                     };
                 }
             });

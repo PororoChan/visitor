@@ -92,7 +92,7 @@
                     dataType: 'json',
                     success: function(res) {
                         msg = "Berhasil Register";
-                        if (res.success == '1') {
+                        if (res.success == 1) {
                             $('#msg').removeClass('alert alert-danger');
                             $('#msg').addClass('alert alert-success m-4 mb-auto');
                             setTimeout(() => {
@@ -103,10 +103,7 @@
                             msg = "Data yang dimasukkan salah";
                         }
 
-                        $('#name').val("");
-                        $('#username').val("");
-                        $('#password').val("");
-                        $('#confirm').val("");
+                        $('#form_regist')[0].reset();
                         $('#msg').html(msg);
                         $('#btn-regist').html("Register");
                     }

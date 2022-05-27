@@ -150,9 +150,9 @@ class Visitor extends BaseController
                 $q = $this->model->editDt($data, $id);
 
                 if ($q) {
-                    $msg['success'] = '1';
+                    $msg['success'] = 1;
                 } else {
-                    $msg['success'] = '0';
+                    $msg['success'] = 0;
                 }
             } else if ($id == '') {
                 $data = [
@@ -168,9 +168,9 @@ class Visitor extends BaseController
 
                 $this->model->tambah($data);
 
-                $msg['success'] = '1';
+                $msg['success'] = 1;
             } else {
-                $msg['success'] = '0';
+                $msg['success'] = 0;
             }
         }
 
@@ -206,6 +206,7 @@ class Visitor extends BaseController
         } else {
             $data = '0';
         }
+
         echo $data;
     }
 
